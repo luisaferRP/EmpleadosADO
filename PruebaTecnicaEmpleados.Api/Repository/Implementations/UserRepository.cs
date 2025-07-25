@@ -142,5 +142,27 @@ namespace PruebaTecnicaEmpleados.Api.Repository.Implementations
                 }
             }
         }
+
+        public async Task<bool> ExistsByCedulaAsync(string dni, int? excludeId = null)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string command = "SELECT COUNT(*) FROM Users WHERE Dni = @Dni";
+                if (excludeId.HasValue)
+                {
+                    command += " AND Id != @ExcludeId";
+                }
+                SqlCommand cmd = new SqlCommand(command, connection);
+                cmd.Parameters.AddWithValue("@Dni", dni);
+                if (excludeId.HasValue)
+                {
+                    cmd.Parameters.AddWithValue("@ExcludeId", excludeId.Value);
+                }
+
+                await connection.OpenAsync();
+                int count = (int)await cmd.ExecuteScalarAsync();
+                return count > 0;
+            }
+        }
     }
 }

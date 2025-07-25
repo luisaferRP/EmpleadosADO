@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using PruebaTecnicaEmpleados.Api.Models;
+using PruebaTecnicaEmpleados.Api.Shared;
 
 namespace PruebaTecnicaEmpleados.Api.Services.Interface
 {
     public interface IUserService
     {
-        Task<IEnumerable<User>> GetAllUsersAsync(); 
-        Task<User> GetUserByIdAsync(int id);       
-        Task AddUserAsync(User user);           
-        Task UpdateUserAsync(User user);      
-        Task DeleteUserAsync(int id);
+        Task<ServiceResponse<IEnumerable<User>>> GetAllUsersAsync(); 
+        Task<ServiceResponse<User>> GetUserByIdAsync(int id);       
+        Task<ServiceResponse<User>> AddUserAsync(User user);           
+        Task<ServiceResponse<User>> UpdateUserAsync(User user);      
+        Task<ServiceResponse<bool>> DeleteUserAsync(int id);
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace PruebaTecnicaEmpleados.Api.Shared
 {
@@ -13,8 +11,12 @@ namespace PruebaTecnicaEmpleados.Api.Shared
 
         public static ServiceResponse<T> Ok(T data, string message = "") =>
             new ServiceResponse<T> { Data = data, Message = message };
+        //public static ServiceResponse<T> Ok(T data, string message = "") =>
+        // new ServiceResponse<T> { Data = data, Message = message , Success= true};
 
         public static ServiceResponse<T> Fail(string message) =>
-            new ServiceResponse<T> { Success = false, Message = message };
+         new ServiceResponse<T> { Success = false, Message = message };
+        //public static ServiceResponse<T> Fail(string message) =>
+        //    new ServiceResponse<T> { Success = false, Message = message , Data = default};
     }
 }

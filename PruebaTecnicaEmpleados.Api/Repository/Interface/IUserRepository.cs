@@ -12,5 +12,6 @@ namespace PruebaTecnicaEmpleados.Api.Repository.Interface
         Task AddAsync(User user);
         Task UpdateAsync(User user);
         Task DeleteAsync(int id);
+        Task<bool> ExistsByCedulaAsync(string cedula, int? excludeId = null);
     }
 }
