@@ -1,0 +1,20 @@
+# Archivos y carpetas de Visual Studio
+.vs/
+*.user
+*.suo
+
+# Archivos de compilación
+bin/
+obj/
+
+# Archivos temporales
+*.log
+*.tmp
+
+# Configuraciones locales
+*.dbmdl
+*.db
+
+# Archivos de sistema
+Thumbs.db
+.DS_Store
