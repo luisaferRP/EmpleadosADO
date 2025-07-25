@@ -38,7 +38,7 @@ namespace PruebaTecnicaEmpleados.Api.Repository.Implementations
             };
         }
 
-        public async Task AddUserAsync(User user)
+        public async Task AddAsync(User user)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -64,7 +64,7 @@ namespace PruebaTecnicaEmpleados.Api.Repository.Implementations
             }
         }
 
-        public async Task DeleteUserAsync(int id)
+        public async Task DeleteAsync(int id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -79,7 +79,7 @@ namespace PruebaTecnicaEmpleados.Api.Repository.Implementations
             }
         }
 
-        public async Task<IEnumerable<User>> GetAllUsersAsync()
+        public async Task<IEnumerable<User>> GetAllAsync()
         {
             var users = new List<User>();
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -97,7 +97,7 @@ namespace PruebaTecnicaEmpleados.Api.Repository.Implementations
             return users.OrderBy(u => u.Name).ToList(); 
         }
 
-        public async Task<User> GetUserByIdAsync(int id)
+        public async Task<User> GetByIdAsync(int id)
         {
             User user = null;
 
@@ -118,7 +118,7 @@ namespace PruebaTecnicaEmpleados.Api.Repository.Implementations
             return user;
         }
 
-        public async Task UpdateUserAsync(User user)
+        public async Task UpdateAsync(User user)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
