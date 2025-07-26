@@ -14,12 +14,12 @@ namespace PruebaTecnicaEmpleados.Api.Services.Implementations
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        private readonly ILogger<UserService> _logger;
+        //private readonly ILogger<UserService> _logger;
 
-        public UserService(IUserRepository userRepository, Ilogger<UserService> logger)
+        public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
-            _logger = logger;
+            //_logger = logger;
         }
 
         public async Task<ServiceResponse<User>> AddUserAsync(User user)
@@ -30,7 +30,6 @@ namespace PruebaTecnicaEmpleados.Api.Services.Implementations
             }
             if(string.IsNullOrEmpty(user.Name) || string.IsNullOrEmpty(user.LastName) || string.IsNullOrEmpty(user.Email))
             {
-                _logger.LogWarning("Datos incompletos para el usuario.");
                 return ServiceResponse<User>.Fail("El nombre, apellido y correo electrónico son obligatorios");
             }
 
@@ -42,7 +41,6 @@ namespace PruebaTecnicaEmpleados.Api.Services.Implementations
             try
             {
                 await _userRepository.AddAsync(user);
-                _logger.LogInformation($"Usuario creado con éxito: ID {createdUser.Id}");
                 return ServiceResponse<User>.Ok(user, "Usuario creado exitosamente");
             }
             catch(Exception ex)
@@ -109,7 +107,7 @@ namespace PruebaTecnicaEmpleados.Api.Services.Implementations
             var existingUser = await _userRepository.GetByIdAsync(user.Id);
             if (existingUser == null)
             {
-                return ServiceResponse<User>.Fail("El usuario no se ha podido actualizar o no se encuentra");
+                return ServiceResponse<User>.Fail("Usuario no encuentrado");
             }
             if (await _userRepository.ExistsByCedulaAsync(user.Dni,user.Id))
             {

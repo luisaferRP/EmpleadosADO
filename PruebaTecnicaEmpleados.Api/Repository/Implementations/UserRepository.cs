@@ -19,7 +19,7 @@ namespace PruebaTecnicaEmpleados.Api.Repository.Implementations
 
         public UserRepository()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString; ;
+            connectionString = ConfigurationManager.ConnectionStrings["EmployeeDB"].ConnectionString;
         }
 
         //Mapeamos el objeto User desde el SqlDataReader,para poder convertir los datos de la base de datos en un objeto User.
