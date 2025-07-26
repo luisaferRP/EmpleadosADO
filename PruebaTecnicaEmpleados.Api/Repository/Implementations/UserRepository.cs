@@ -19,7 +19,7 @@ namespace PruebaTecnicaEmpleados.Api.Repository.Implementations
 
         public UserRepository()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString; ;
+            connectionString = ConfigurationManager.ConnectionStrings["EmployeeDB"].ConnectionString;
         }
 
         //Mapeamos el objeto User desde el SqlDataReader,para poder convertir los datos de la base de datos en un objeto User.
@@ -38,7 +38,7 @@ namespace PruebaTecnicaEmpleados.Api.Repository.Implementations
             };
         }
 
-        public async Task AddUserAsync(User user)
+        public async Task AddAsync(User user)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -64,7 +64,7 @@ namespace PruebaTecnicaEmpleados.Api.Repository.Implementations
             }
         }
 
-        public async Task DeleteUserAsync(int id)
+        public async Task DeleteAsync(int id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -79,7 +79,7 @@ namespace PruebaTecnicaEmpleados.Api.Repository.Implementations
             }
         }
 
-        public async Task<IEnumerable<User>> GetAllUsersAsync()
+        public async Task<IEnumerable<User>> GetAllAsync()
         {
             var users = new List<User>();
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -97,7 +97,7 @@ namespace PruebaTecnicaEmpleados.Api.Repository.Implementations
             return users.OrderBy(u => u.Name).ToList(); 
         }
 
-        public async Task<User> GetUserByIdAsync(int id)
+        public async Task<User> GetByIdAsync(int id)
         {
             User user = null;
 
@@ -118,7 +118,7 @@ namespace PruebaTecnicaEmpleados.Api.Repository.Implementations
             return user;
         }
 
-        public async Task UpdateUserAsync(User user)
+        public async Task UpdateAsync(User user)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -140,6 +140,28 @@ namespace PruebaTecnicaEmpleados.Api.Repository.Implementations
                 {
                     throw new Exception("El usuario no se pudo actualizar.");
                 }
+            }
+        }
+
+        public async Task<bool> ExistsByCedulaAsync(string dni, int? excludeId = null)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string command = "SELECT COUNT(*) FROM Users WHERE Dni = @Dni";
+                if (excludeId.HasValue)
+                {
+                    command += " AND Id != @ExcludeId";
+                }
+                SqlCommand cmd = new SqlCommand(command, connection);
+                cmd.Parameters.AddWithValue("@Dni", dni);
+                if (excludeId.HasValue)
+                {
+                    cmd.Parameters.AddWithValue("@ExcludeId", excludeId.Value);
+                }
+
+                await connection.OpenAsync();
+                int count = (int)await cmd.ExecuteScalarAsync();
+                return count > 0;
             }
         }
     }

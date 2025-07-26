@@ -5,12 +5,13 @@ using PruebaTecnicaEmpleados.Api.Models;
 
 namespace PruebaTecnicaEmpleados.Api.Repository.Interface
 {
-    internal interface IUserRepository
+    public interface IUserRepository
     {
-        Task<IEnumerable<User>> GetAllUsersAsync();
-        Task<User> GetUserByIdAsync(int id);
-        Task AddUserAsync(User user);
-        Task UpdateUserAsync(User user);
-        Task DeleteUserAsync(int id);
+        Task<IEnumerable<User>> GetAllAsync();
+        Task<User> GetByIdAsync(int id);
+        Task AddAsync(User user);
+        Task UpdateAsync(User user);
+        Task DeleteAsync(int id);
+        Task<bool> ExistsByCedulaAsync(string cedula, int? excludeId = null);
     }
 }
