@@ -1,0 +1,28 @@
+﻿@model PruebaTecnicaEmpleados.Presentation.Models.User
+
+@{
+    ViewBag.Title = "Confirmar Eliminación";
+}
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="card shadow p-4" style="width: 100%; max-width: 500px;">
+        <h2 class="form-title text-center mb-4">
+            <i class="bi bi-trash"></i> @ViewBag.Title
+        </h2>
+
+        <div class="mb-3">
+            <p><strong>Nombre:</strong> @Model.Name</p>
+            <p><strong>Email:</strong> @Model.Email</p>
+        </div>
+
+        <form asp-action="DeleteConfirmed" method="post" class="text-center">
+            @Html.AntiForgeryToken() 
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger me-2">Sí, eliminar</button>
+            @Html.ActionLink("Cancelar", "Index", "Users", new { area = "" }, new { @class = "btn btn-secondary" })
+        </form>
+    </div>
+</div>
+
+
+
