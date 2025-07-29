@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PruebaTecnicaEmpleados.Api"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PruebaTecnicaEmpleados.Presentation", "PruebaTecnicaEmpleados.Presentation\PruebaTecnicaEmpleados.Presentation.csproj", "{ABFCEEC5-D8A7-48D2-9174-2099D40489C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PruebaTecnicaEmpleados.ConsoleApp", "PruebaTecnicaEmpleados.ConsoleApp\PruebaTecnicaEmpleados.ConsoleApp.csproj", "{44238D00-06DC-4084-9F8B-45B390AE2B23}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9FF977FE-5C63-4725-A015-C74CF2D2D17A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +25,17 @@ Global
 		{ABFCEEC5-D8A7-48D2-9174-2099D40489C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABFCEEC5-D8A7-48D2-9174-2099D40489C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABFCEEC5-D8A7-48D2-9174-2099D40489C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44238D00-06DC-4084-9F8B-45B390AE2B23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44238D00-06DC-4084-9F8B-45B390AE2B23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44238D00-06DC-4084-9F8B-45B390AE2B23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44238D00-06DC-4084-9F8B-45B390AE2B23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E7447515-5CE5-4858-B754-09188CBF0EC6} = {9FF977FE-5C63-4725-A015-C74CF2D2D17A}
+		{ABFCEEC5-D8A7-48D2-9174-2099D40489C5} = {9FF977FE-5C63-4725-A015-C74CF2D2D17A}
+		{44238D00-06DC-4084-9F8B-45B390AE2B23} = {9FF977FE-5C63-4725-A015-C74CF2D2D17A}
 	EndGlobalSection
 EndGlobal
